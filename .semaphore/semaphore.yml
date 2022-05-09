@@ -4,6 +4,9 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2004
+fail_fast:
+  stop:
+    when: 'true'
 blocks:
   - name: Test
     task:
@@ -13,8 +16,8 @@ blocks:
             - checkout
             - sem-version node 12
             - cache restore
-            - yarn install
+            - npm install
             - cache store
             - npm run build --if-present
-            - yarn start
-            - yarn test
+            - npm run start
+            - npm run test
